@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8000";
+const BASE = import.meta.env.VITE_API_BASE || "http://localhost:8000";
 
 export async function researchSite(url) {
   const r = await fetch(`${BASE}/research`, {

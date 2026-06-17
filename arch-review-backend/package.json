@@ -2,7 +2,7 @@
   "name": "arch-review",
   "private": true,
   "scripts": {
-    "dev": "concurrently --names \"API,UI\" --prefix-colors \"blue,green\" \"./venv/bin/uvicorn main:app --reload --port 8000\" \"npm run dev --prefix frontend\""
+    "dev": "concurrently --names \"API,UI\" --prefix-colors \"blue,green\" \"./venv/bin/uvicorn main:app --reload --host 0.0.0.0 --port 8000\" \"npm run dev --prefix frontend\""
   },
   "devDependencies": {
     "concurrently": "*"

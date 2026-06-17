@@ -19,6 +19,7 @@ app.add_middleware(
 )
 
 PAGESPEED_KEY = os.environ.get("PAGESPEED_API_KEY", "")
+ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
@@ -92,6 +93,11 @@ SIGNATURES = [
 
 class ResearchRequest(BaseModel):
     url: str
+
+
+class AnalyzeRequest(BaseModel):
+    system: str
+    user: str
 
 
 def normalise_url(url: str) -> str:
@@ -178,6 +184,30 @@ async def fetch_pagespeed(url: str, strategy: str):
         "speed_index": audit_val("speed-index"),
     }
     return out
+
+
+@app.post("/analyze")
+async def analyze(req: AnalyzeRequest):
+    if not ANTHROPIC_KEY:
+        raise HTTPException(status_code=503, detail="ANTHROPIC_API_KEY not set on the server.")
+    payload = {
+        "model": "claude-sonnet-4-6",
+        "max_tokens": 1500,
+        "system": req.system,
+        "messages": [{"role": "user", "content": req.user}],
+    }
+    headers = {
+        "x-api-key": ANTHROPIC_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+    }
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        r = await client.post("https://api.anthropic.com/v1/messages", json=payload, headers=headers)
+    if r.status_code != 200:
+        raise HTTPException(status_code=502, detail=f"Anthropic API error {r.status_code}: {r.text[:300]}")
+    data = r.json()
+    text = data["content"][0]["text"]
+    return {"text": text}
 
 
 @app.get("/health")

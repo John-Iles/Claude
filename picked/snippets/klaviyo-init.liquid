@@ -1,0 +1,13 @@
+{%- comment -%}
+  Loads the Klaviyo onsite JS asynchronously.
+  Uses only the PUBLIC company key — never the private API key.
+  The public key is read-only and safe to expose in client-side code.
+{%- endcomment -%}
+
+{%- if settings.klaviyo_public_key != blank -%}
+<script
+  async
+  type="text/javascript"
+  src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_public_key | escape }}"
+></script>
+{%- endif -%}

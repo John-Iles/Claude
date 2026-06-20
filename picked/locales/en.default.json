@@ -1,0 +1,32 @@
+{
+  "general": {
+    "accept_cookies": "Accept all",
+    "reject_cookies": "Reject non-essential",
+    "cookie_banner_text": "We use cookies to improve your experience and track sign-ups. Non-essential cookies are only set after consent.",
+    "privacy_policy": "Privacy policy"
+  },
+  "header": {
+    "logo_alt": "Picked Coffee",
+    "nav_label": "Main navigation"
+  },
+  "footer": {
+    "roaster_cta": "Are you a roaster?",
+    "roaster_link_label": "Get in touch",
+    "copyright": "© Picked Coffee {{ year }}. All rights reserved."
+  },
+  "waitlist": {
+    "email_label": "Email address",
+    "email_placeholder": "your@email.com",
+    "consent_note": "By joining you agree to receive occasional emails about Picked. Double opt-in required — confirm your email to secure your spot. Unsubscribe anytime.",
+    "success_message": "You're on the list! Check your inbox to confirm your spot.",
+    "error_invalid": "Please enter a valid email address.",
+    "error_generic": "Something went wrong. Please try again.",
+    "loading_label": "Sending…"
+  },
+  "faq": {
+    "heading": "Questions"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  }
+}

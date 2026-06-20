@@ -1,0 +1,37 @@
+{%- comment -%}
+  GDPR/UK cookie consent banner.
+  Shown on first visit (no picked_consent cookie). Hidden after choice.
+  consent-banner.js handles cookie write + Shopify customerPrivacy API call.
+{%- endcomment -%}
+
+{%- if settings.consent_banner_enabled -%}
+{{ 'consent-banner.css' | asset_url | stylesheet_tag }}
+
+<div
+  id="consent-banner"
+  class="consent-banner"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Cookie consent"
+  hidden
+>
+  <p class="consent-banner__text">
+    {{ 'general.cookie_banner_text' | t }}
+    {%- if pages['privacy-policy'].url != blank -%}
+      <a href="{{ pages['privacy-policy'].url }}" class="consent-banner__link">{{ 'general.privacy_policy' | t }}</a>
+    {%- else -%}
+      <a href="/pages/privacy" class="consent-banner__link">{{ 'general.privacy_policy' | t }}</a>
+    {%- endif -%}
+  </p>
+  <div class="consent-banner__actions">
+    <button id="consent-reject" class="btn btn--outline consent-banner__btn" type="button">
+      {{ 'general.reject_cookies' | t }}
+    </button>
+    <button id="consent-accept" class="btn btn--primary consent-banner__btn" type="button">
+      {{ 'general.accept_cookies' | t }}
+    </button>
+  </div>
+</div>
+
+<script src="{{ 'consent-banner.js' | asset_url }}" defer></script>
+{%- endif -%}

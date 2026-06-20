@@ -1,0 +1,31 @@
+{{ 'section-page-content.css' | asset_url | stylesheet_tag }}
+
+<section class="page-content section">
+  <div class="container">
+    <div class="page-content__inner">
+
+      {%- if page.title != blank -%}
+        <h1 class="page-content__title">{{ page.title | escape }}</h1>
+      {%- endif -%}
+
+      {%- if page.content != blank -%}
+        <div class="page-content__body rte">
+          {{ page.content }}
+        </div>
+      {%- else -%}
+        <p class="page-content__empty">This page has no content yet.</p>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page content",
+  "settings": [],
+  "presets": [
+    { "name": "Page content" }
+  ]
+}
+{% endschema %}

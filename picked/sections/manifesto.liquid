@@ -1,0 +1,57 @@
+{{ 'section-manifesto.css' | asset_url | stylesheet_tag }}
+
+<section class="manifesto section" id="manifesto">
+  <div class="container">
+    <div class="manifesto__inner">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="manifesto__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="manifesto__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <div class="manifesto__body rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.pull_quote != blank -%}
+        <blockquote class="manifesto__pull-quote">
+          <p>{{ section.settings.pull_quote | escape }}</p>
+        </blockquote>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manifesto",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our belief" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Great coffee shouldn't be complicated to find."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Independent roasters are producing some of the most extraordinary coffees in the world. Finding them shouldn't require a spreadsheet, a subscription to every newsletter, or three hours on Instagram.</p><p>Picked does the searching so you don't have to. We curate one coffee from one roaster each month — the best they have to offer — and deliver it straight to your door.</p><p>No choice paralysis. No compromise. Just a great coffee and the story behind it.</p>"
+    },
+    {
+      "type": "text",
+      "id": "pull_quote",
+      "label": "Pull quote (optional)",
+      "default": "One great coffee. One story worth knowing."
+    }
+  ],
+  "presets": [
+    { "name": "Manifesto" }
+  ]
+}
+{% endschema %}

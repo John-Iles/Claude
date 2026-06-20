@@ -1,0 +1,95 @@
+.waitlist-form {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+}
+
+.waitlist-form .section__heading {
+  color: var(--color-cream);
+}
+
+.waitlist-form .section__subheading {
+  color: rgba(247, 240, 227, 0.8);
+  margin-inline: auto;
+}
+
+.waitlist-form__inner {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.waitlist-form__subheading {
+  margin-bottom: var(--sp-8);
+}
+
+.waitlist-form__form {
+  margin-top: var(--sp-8);
+}
+
+.waitlist-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 480px) {
+  .waitlist-form__row {
+    flex-direction: row;
+    gap: var(--sp-2);
+  }
+}
+
+.waitlist-form__input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--sp-4) var(--sp-5);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(247, 240, 227, 0.25);
+  border-radius: var(--radius-full);
+  color: var(--color-cream);
+  font-size: var(--text-base);
+  line-height: 1;
+  transition: border-color var(--t-base), background-color var(--t-base);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.waitlist-form__input::placeholder {
+  color: rgba(247, 240, 227, 0.4);
+}
+
+.waitlist-form__input:focus {
+  outline: none;
+  border-color: var(--color-cream);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.waitlist-form__submit {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.waitlist-form__consent-note {
+  margin-top: var(--sp-4);
+  font-size: var(--text-xs);
+  color: rgba(247, 240, 227, 0.5);
+  line-height: var(--leading-relaxed);
+  max-width: 52ch;
+}
+
+/* Status messages */
+.waitlist-form__status {
+  margin-top: var(--sp-5);
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  background-color: rgba(92, 107, 78, 0.25);
+  color: var(--color-cream);
+  border: 1px solid rgba(92, 107, 78, 0.4);
+}
+
+.waitlist-form__status.is-error {
+  background-color: rgba(184, 117, 13, 0.2);
+  border-color: rgba(184, 117, 13, 0.4);
+  color: var(--color-cream);
+}

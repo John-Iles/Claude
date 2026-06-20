@@ -1,0 +1,109 @@
+:root {
+  /* --- Colour palette --- */
+  --color-espresso: #1A0F0A;
+  --color-espresso-muted: #2D1F16;
+  --color-cream: #F7F0E3;
+  --color-cream-dark: #EDE3CF;
+  --color-sage: #5C6B4E;
+  --color-sage-light: #8A9E78;
+  --color-slate: #4B5563;
+  --color-amber: #B8750D;
+  --color-warm-white: #FFFDF8;
+  --color-white: #FFFFFF;
+
+  /* Semantic colour aliases */
+  --color-text-primary:   var(--color-espresso);
+  --color-text-secondary: var(--color-slate);
+  --color-text-inverse:   var(--color-cream);
+  --color-text-muted:     rgba(26,15,10,0.55);
+
+  --color-bg-base:   var(--color-warm-white);
+  --color-bg-subtle: var(--color-cream);
+  --color-bg-dark:   var(--color-espresso);
+
+  --color-cta-bg:    var(--color-espresso);
+  --color-cta-text:  var(--color-cream);
+  --color-cta-hover: var(--color-espresso-muted);
+
+  --color-focus-ring: var(--color-amber);
+  --color-border:     var(--color-cream-dark);
+
+  /* --- Typography --- */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+
+  --leading-tight:   1.2;
+  --leading-snug:    1.375;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.05em;
+  --tracking-wider:  0.1em;
+
+  /* --- Spacing (4px base) --- */
+  --sp-1:  0.25rem;   /* 4px */
+  --sp-2:  0.5rem;    /* 8px */
+  --sp-3:  0.75rem;   /* 12px */
+  --sp-4:  1rem;      /* 16px */
+  --sp-5:  1.25rem;   /* 20px */
+  --sp-6:  1.5rem;    /* 24px */
+  --sp-8:  2rem;      /* 32px */
+  --sp-10: 2.5rem;    /* 40px */
+  --sp-12: 3rem;      /* 48px */
+  --sp-16: 4rem;      /* 64px */
+  --sp-20: 5rem;      /* 80px */
+  --sp-24: 6rem;      /* 96px */
+  --sp-32: 8rem;      /* 128px */
+
+  /* Section rhythm */
+  --section-py:    var(--sp-16);
+  --section-px:    var(--sp-6);
+
+  /* --- Layout --- */
+  --max-w-content: 1200px;
+  --max-w-prose:   68ch;
+  --max-w-narrow:  48ch;
+
+  /* --- Radii --- */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+
+  /* --- Transitions --- */
+  --t-fast: 120ms ease;
+  --t-base: 200ms ease;
+  --t-slow: 300ms ease;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-py: var(--sp-24);
+    --section-px: var(--sp-8);
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --section-px: var(--sp-12);
+  }
+}

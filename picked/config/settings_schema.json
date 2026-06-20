@@ -1,0 +1,120 @@
+[
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo_image",
+        "label": "Logo image",
+        "info": "Recommended: SVG or PNG, max 200px wide. Uploading here overrides the built-in wordmark."
+      },
+      {
+        "type": "image_picker",
+        "id": "og_image",
+        "label": "Social sharing image",
+        "info": "Used for OG/Twitter card previews. Recommended: 1200×630 px."
+      }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "text",
+        "id": "meta_description",
+        "label": "Default meta description",
+        "default": "Picked delivers one hand-selected specialty coffee from one featured independent roaster to your letterbox every month. Join the waitlist.",
+        "info": "Used when a page has no specific description. Max 160 characters."
+      }
+    ]
+  },
+  {
+    "name": "Klaviyo",
+    "settings": [
+      {
+        "type": "text",
+        "id": "klaviyo_public_key",
+        "label": "Klaviyo public key",
+        "info": "Your 6-character public company ID from Klaviyo → Account → Settings → API Keys. Safe to expose client-side."
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "Waitlist list ID",
+        "info": "The ID of your 'Picked Waitlist' list in Klaviyo (e.g. XxXxXx). Found in Audience → Lists & Segments → your list → Settings."
+      }
+    ]
+  },
+  {
+    "name": "Analytics",
+    "settings": [
+      {
+        "type": "text",
+        "id": "ga4_measurement_id",
+        "label": "GA4 Measurement ID (optional)",
+        "info": "If provided, GA4 will be activated after cookie consent. Format: G-XXXXXXXXXX. Leave blank to disable GA4."
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "tiktok_url",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "twitter_url",
+        "label": "Twitter / X URL"
+      }
+    ]
+  },
+  {
+    "name": "Consent",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "consent_banner_enabled",
+        "label": "Show cookie consent banner",
+        "default": true,
+        "info": "Required for UK/GDPR compliance. Disabling this will still honour Shopify's Customer Privacy API."
+      }
+    ]
+  },
+  {
+    "name": "Phase flags (Phase 1 activation)",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Leave all off during Phase 0 (waitlist). Flip on at Phase 1 launch."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_nav",
+        "label": "Show navigation in header",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_shop_link",
+        "label": "Show 'Subscribe' CTA in header",
+        "default": false,
+        "info": "Requires show_nav to be on."
+      },
+      {
+        "type": "checkbox",
+        "id": "referral_enabled",
+        "label": "Enable refer-to-climb-the-queue mechanic",
+        "default": false,
+        "info": "Controls the visibility of the referral tease section on the landing page."
+      }
+    ]
+  }
+]

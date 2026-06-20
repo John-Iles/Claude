@@ -1,0 +1,101 @@
+{{ 'section-waitlist-form.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'referral.js' | asset_url }}" defer></script>
+<script src="{{ 'klaviyo-form.js' | asset_url }}" defer></script>
+
+<section class="waitlist-form section section--centered" id="waitlist">
+  <div class="container">
+    <div class="waitlist-form__inner">
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="section__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="section__subheading waitlist-form__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+
+      {%- assign list_id = settings.klaviyo_list_id -%}
+      {%- if section.settings.klaviyo_list_id != blank -%}
+        {%- assign list_id = section.settings.klaviyo_list_id -%}
+      {%- endif -%}
+
+      <form
+        id="waitlist-form"
+        class="waitlist-form__form"
+        data-company-id="{{ settings.klaviyo_public_key | escape }}"
+        data-list-id="{{ list_id | escape }}"
+        novalidate
+        aria-label="Join the Picked waitlist"
+      >
+        <div class="waitlist-form__row">
+          <label for="waitlist-email" class="visually-hidden">
+            {{ 'waitlist.email_label' | t }}
+          </label>
+          <input
+            type="email"
+            id="waitlist-email"
+            name="email"
+            class="waitlist-form__input"
+            placeholder="{{ 'waitlist.email_placeholder' | t }}"
+            required
+            aria-required="true"
+            autocomplete="email"
+            inputmode="email"
+          >
+          <input type="hidden" name="source" id="waitlist-source" value="phase0-landing">
+          <input type="hidden" name="referral_code" id="waitlist-referral" value="">
+          <button type="submit" class="btn btn--primary waitlist-form__submit">
+            {{ section.settings.button_label | escape }}
+          </button>
+        </div>
+
+        <p class="waitlist-form__consent-note">{{ 'waitlist.consent_note' | t }}</p>
+
+        <div
+          id="waitlist-status"
+          class="waitlist-form__status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          hidden
+        ></div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Waitlist form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Be first in line."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Join the waitlist and we'll let you know the moment we launch — plus you'll get a founding member discount."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Join the waitlist"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_list_id",
+      "label": "List ID override (optional)",
+      "info": "Leave blank to use the global Klaviyo list ID from Theme settings."
+    }
+  ],
+  "presets": [
+    { "name": "Waitlist form" }
+  ]
+}
+{% endschema %}

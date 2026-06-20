@@ -1,0 +1,63 @@
+{{ 'section-referral-tease.css' | asset_url | stylesheet_tag }}
+
+{%- if settings.referral_enabled -%}
+<section class="referral-tease section section--centered" id="referral">
+  <div class="container">
+    <div class="referral-tease__inner">
+
+      <div class="referral-tease__icon" aria-hidden="true">↑</div>
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="section__heading referral-tease__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <p class="referral-tease__body">{{ section.settings.body | escape }}</p>
+      {%- endif -%}
+
+      <div class="referral-tease__steps">
+        <div class="referral-tease__step">
+          <span class="referral-tease__step-num">1</span>
+          <span>Sign up to the waitlist</span>
+        </div>
+        <div class="referral-tease__step">
+          <span class="referral-tease__step-num">2</span>
+          <span>Confirm your email — we'll send you a personal referral link</span>
+        </div>
+        <div class="referral-tease__step">
+          <span class="referral-tease__step-num">3</span>
+          <span>Share it — each person you refer moves you closer to the front</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Referral tease",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Visibility controlled by the 'Enable referral mechanic' toggle in Theme settings."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Move up the queue."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "After you've confirmed your email, we'll send you a personal referral link. Every person you bring along moves you closer to the front of the queue."
+    }
+  ],
+  "presets": [
+    { "name": "Referral tease" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,57 @@
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+
+<header class="site-header" role="banner">
+  <div class="container site-header__inner">
+
+    <a href="{{ routes.root_url }}" class="site-header__logo-link" aria-label="{{ 'header.logo_alt' | t }}">
+      {%- if settings.logo_image != blank -%}
+        {{
+          settings.logo_image
+          | image_url: width: 200
+          | image_tag:
+            class: 'site-header__logo-img',
+            alt: shop.name,
+            loading: 'eager',
+            width: 160,
+            height: 40
+        }}
+      {%- else -%}
+        <span class="site-header__wordmark" aria-label="{{ shop.name }}">
+          {%- render 'icon-sprite' -%}
+          <img
+            src="{{ 'logo.svg' | asset_url }}"
+            alt="{{ shop.name }}"
+            class="site-header__logo-img"
+            width="120"
+            height="32"
+            loading="eager"
+          >
+        </span>
+      {%- endif -%}
+    </a>
+
+    {%- if settings.show_nav -%}
+      <nav class="site-header__nav" aria-label="{{ 'header.nav_label' | t }}">
+        <ul class="site-header__nav-list" role="list">
+          <li><a href="/pages/how-it-works" class="site-header__nav-link">How it works</a></li>
+          <li><a href="/pages/roasters" class="site-header__nav-link">Roasters</a></li>
+          <li><a href="/journal" class="site-header__nav-link">Journal</a></li>
+          {%- if settings.show_shop_link -%}
+            <li>
+              <a href="/products/picked-subscription" class="btn btn--primary site-header__cta">Subscribe</a>
+            </li>
+          {%- endif -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [],
+  "tag": "aside"
+}
+{% endschema %}

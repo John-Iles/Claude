@@ -1,0 +1,48 @@
+.manifesto {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+}
+
+.manifesto__inner {
+  max-width: var(--max-w-prose);
+  margin-inline: auto;
+}
+
+.manifesto__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-sage-light);
+  margin-bottom: var(--sp-4);
+}
+
+.manifesto__heading {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 4.5vw, var(--text-5xl));
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-cream);
+  margin-bottom: var(--sp-8);
+}
+
+.manifesto__body {
+  color: rgba(247, 240, 227, 0.78);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.manifesto__pull-quote {
+  border-left: 3px solid var(--color-sage);
+  padding-left: var(--sp-6);
+  margin-top: var(--sp-12);
+}
+
+.manifesto__pull-quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(var(--text-xl), 2.5vw, var(--text-2xl));
+  line-height: var(--leading-snug);
+  color: var(--color-cream);
+}

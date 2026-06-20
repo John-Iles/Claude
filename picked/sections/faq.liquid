@@ -1,0 +1,132 @@
+{{ 'section-faq.css' | asset_url | stylesheet_tag }}
+
+<section class="faq section" id="faq">
+  <div class="container">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="section__heading faq__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="faq__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'faq_item' -%}
+            <details class="faq__item" {{ block.shopify_attributes }}>
+              <summary class="faq__question">
+                <span class="faq__question-text">{{ block.settings.question | escape }}</span>
+                <span class="faq__chevron" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__answer">
+                <p>{{ block.settings.answer | escape }}</p>
+              </div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} FAQPage JSON-LD — Google accepts this in <body>. {%- endcomment -%}
+      {%- capture faq_entities -%}
+        {%- assign first_item = true -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'faq_item' and block.settings.question != blank and block.settings.answer != blank -%}
+            {%- unless first_item -%},{%- endunless -%}
+            {
+              "@type": "Question",
+              "name": {{ block.settings.question | json }},
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": {{ block.settings.answer | json }}
+              }
+            }
+            {%- assign first_item = false -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+
+      {%- unless faq_entities == blank -%}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [{{ faq_entities | strip }}]
+        }
+        </script>
+      {%- endunless -%}
+
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What exactly do I get?",
+            "answer": "Each month you receive 250g of specialty coffee from one featured independent roaster, delivered in letterbox-friendly flat-pack kraft packaging. Every subscriber gets the same coffee that month — it's curated, not customised."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does delivery work?",
+            "answer": "Your featured roaster ships directly to you each month — straight from the roastery, as fresh as possible. The packaging is designed to fit through a standard UK letterbox so you never need to be home."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I choose my coffee or grind setting?",
+            "answer": "Not at launch. Picked is deliberately curated — one coffee, one roaster, for everyone that month. We'll add grind options in a future update based on subscriber feedback."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What happens if I love a coffee and want more?",
+            "answer": "That's the best part. After delivery we'll introduce you directly to the roaster with a personal recommendation and a first-order offer. You'll be able to explore their full range and start a direct relationship with a roaster you actually like."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I pause or cancel?",
+            "answer": "Yes — pause or cancel anytime from your account page. No minimum term, no cancellation fee."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "When do you launch?",
+            "answer": "We're building our first cohort now. Sign up to the waitlist and you'll be among the first to know — and first in line."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,115 @@
+{{ 'section-launch-partner.css' | asset_url | stylesheet_tag }}
+
+<section class="launch-partner section section--centered" id="launch-partner">
+  <div class="container">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="section__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.roaster_locked -%}
+
+      <div class="launch-partner__revealed">
+        {%- if section.settings.roaster_logo != blank -%}
+          <div class="launch-partner__logo">
+            {{
+              section.settings.roaster_logo
+              | image_url: width: 320
+              | image_tag:
+                loading: 'lazy',
+                alt: section.settings.roaster_name | escape,
+                width: 200,
+                height: 80
+            }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.roaster_name != blank -%}
+          <h2 class="launch-partner__name">{{ section.settings.roaster_name | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.roaster_blurb != blank -%}
+          <p class="launch-partner__blurb">{{ section.settings.roaster_blurb | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.roaster_location != blank -%}
+          <p class="launch-partner__location">{{ section.settings.roaster_location | escape }}</p>
+        {%- endif -%}
+      </div>
+
+    {%- else -%}
+
+      <div class="launch-partner__placeholder">
+        <div class="launch-partner__placeholder-icon" aria-hidden="true">◉</div>
+        <h2 class="launch-partner__placeholder-heading">{{ section.settings.placeholder_heading | escape }}</h2>
+        <p class="launch-partner__placeholder-text">{{ section.settings.placeholder_text | escape }}</p>
+      </div>
+
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Launch partner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our first featured roaster"
+    },
+    {
+      "type": "header",
+      "content": "When roaster is confirmed"
+    },
+    {
+      "type": "checkbox",
+      "id": "roaster_locked",
+      "label": "Roaster confirmed — show their details",
+      "default": false,
+      "info": "Toggle on once the first roaster partnership is signed. Until then, the placeholder copy shows."
+    },
+    {
+      "type": "text",
+      "id": "roaster_name",
+      "label": "Roaster name"
+    },
+    {
+      "type": "image_picker",
+      "id": "roaster_logo",
+      "label": "Roaster logo"
+    },
+    {
+      "type": "textarea",
+      "id": "roaster_blurb",
+      "label": "One-sentence description"
+    },
+    {
+      "type": "text",
+      "id": "roaster_location",
+      "label": "Location (e.g. Bristol, UK)"
+    },
+    {
+      "type": "header",
+      "content": "Placeholder (shown when roaster not yet confirmed)"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_heading",
+      "label": "Placeholder heading",
+      "default": "A roaster worth knowing about."
+    },
+    {
+      "type": "textarea",
+      "id": "placeholder_text",
+      "label": "Placeholder body",
+      "default": "We're finalising our first featured roaster partnership. Someone who takes their craft seriously, sources with care, and has a story worth telling. More soon."
+    }
+  ],
+  "presets": [
+    { "name": "Launch partner" }
+  ]
+}
+{% endschema %}

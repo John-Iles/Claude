@@ -1,0 +1,103 @@
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container site-footer__inner">
+
+    <div class="site-footer__brand">
+      <a href="{{ routes.root_url }}" class="site-footer__logo-link" aria-label="{{ shop.name }}">
+        {%- if settings.logo_image != blank -%}
+          {{
+            settings.logo_image
+            | image_url: width: 120
+            | image_tag:
+              class: 'site-footer__logo-img',
+              alt: shop.name,
+              loading: 'lazy',
+              width: 96,
+              height: 24
+          }}
+        {%- else -%}
+          <img
+            src="{{ 'logo.svg' | asset_url }}"
+            alt="{{ shop.name }}"
+            class="site-footer__logo-img site-footer__logo-img--inverted"
+            width="96"
+            height="24"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </a>
+      <p class="site-footer__tagline">{{ section.settings.tagline | escape }}</p>
+    </div>
+
+    <div class="site-footer__links">
+
+      {%- if settings.instagram_url != blank or settings.tiktok_url != blank or settings.twitter_url != blank -%}
+        <ul class="site-footer__social" role="list" aria-label="Social media">
+          {%- if settings.instagram_url != blank -%}
+            <li>
+              <a href="{{ settings.instagram_url }}" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Picked on Instagram">
+                <svg class="site-footer__social-icon" aria-hidden="true"><use href="#icon-instagram"></use></svg>
+              </a>
+            </li>
+          {%- endif -%}
+          {%- if settings.tiktok_url != blank -%}
+            <li>
+              <a href="{{ settings.tiktok_url }}" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Picked on TikTok">
+                <svg class="site-footer__social-icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg>
+              </a>
+            </li>
+          {%- endif -%}
+          {%- if settings.twitter_url != blank -%}
+            <li>
+              <a href="{{ settings.twitter_url }}" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Picked on Twitter / X">
+                <svg class="site-footer__social-icon" aria-hidden="true"><use href="#icon-twitter"></use></svg>
+              </a>
+            </li>
+          {%- endif -%}
+        </ul>
+      {%- endif -%}
+
+      <p class="site-footer__roaster-cta">
+        {{ 'footer.roaster_cta' | t }}
+        <a href="mailto:{{ section.settings.roaster_email }}" class="site-footer__roaster-link">
+          {{ 'footer.roaster_link_label' | t }}
+        </a>
+      </p>
+
+    </div>
+
+    <div class="site-footer__legal">
+      <ul class="site-footer__legal-links" role="list">
+        <li><a href="/pages/privacy">Privacy</a></li>
+        <li><a href="/pages/terms">Terms</a></li>
+      </ul>
+      <p class="site-footer__copyright">
+        {%- assign year = 'now' | date: '%Y' -%}
+        {{ 'footer.copyright' | t: year: year }}
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Specialty coffee, curated."
+    },
+    {
+      "type": "text",
+      "id": "roaster_email",
+      "label": "Roaster contact email",
+      "default": "roasters@picked.coffee"
+    }
+  ],
+  "tag": "aside"
+}
+{% endschema %}

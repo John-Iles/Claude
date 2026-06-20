@@ -1,0 +1,87 @@
+{%- comment -%}
+  Renders the full <head> SEO block: title, meta description, OG tags,
+  canonical link, Organization JSON-LD, and Google Fonts.
+  Must be called from layout/theme.liquid inside <head>.
+{%- endcomment -%}
+
+{%- assign page_meta_desc = page.metafields.global.description_tag
+  | default: settings.meta_description
+  | default: 'Picked delivers one hand-selected specialty coffee from one featured independent roaster to your letterbox every month.'
+-%}
+
+{%- if request.page_type == 'index' -%}
+  <title>{{ shop.name }} — Specialty coffee discovery, monthly.</title>
+{%- elsif page_title == blank -%}
+  <title>{{ shop.name }}</title>
+{%- else -%}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+{%- endif -%}
+
+<meta name="description" content="{{ page_meta_desc | escape | truncate: 160 }}">
+
+{%- comment -%} Open Graph {%- endcomment -%}
+{%- if settings.og_image != blank -%}
+  {%- assign og_img_url = settings.og_image | image_url: width: 1200 -%}
+{%- elsif page.featured_image != blank -%}
+  {%- assign og_img_url = page.featured_image | image_url: width: 1200 -%}
+{%- endif -%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:title" content="{{ page_title | default: shop.name | escape }}">
+<meta property="og:description" content="{{ page_meta_desc | escape | truncate: 200 }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="{{ request.locale.iso_code | replace: '-', '_' }}">
+{%- if og_img_url -%}
+<meta property="og:image" content="https:{{ og_img_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:alt" content="{{ page_title | default: shop.name | escape }}">
+{%- endif -%}
+
+{%- comment -%} Twitter card {%- endcomment -%}
+<meta name="twitter:card" content="{{ og_img_url | default: false | ternary: 'summary_large_image', 'summary' }}">
+<meta name="twitter:title" content="{{ page_title | default: shop.name | escape }}">
+<meta name="twitter:description" content="{{ page_meta_desc | escape | truncate: 200 }}">
+{%- if og_img_url -%}
+<meta name="twitter:image" content="https:{{ og_img_url }}">
+{%- endif -%}
+
+<link rel="canonical" href="{{ canonical_url }}">
+
+{%- comment -%} Google Fonts — Playfair Display (display) + Inter (body) {%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+{%- comment -%}
+  Organization JSON-LD — static, lives here not in a section so it always renders.
+{%- endcomment -%}
+{%- capture org_same_as -%}
+  {%- assign first = true -%}
+  {%- if settings.instagram_url != blank -%}
+    "{{ settings.instagram_url }}"
+    {%- assign first = false -%}
+  {%- endif -%}
+  {%- if settings.tiktok_url != blank -%}
+    {%- unless first -%},{%- endunless -%}
+    "{{ settings.tiktok_url }}"
+    {%- assign first = false -%}
+  {%- endif -%}
+  {%- if settings.twitter_url != blank -%}
+    {%- unless first -%},{%- endunless -%}
+    "{{ settings.twitter_url }}"
+  {%- endif -%}
+{%- endcapture -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  "logo": {{ 'logo.svg' | asset_url | json }}
+  {%- if org_same_as != blank -%}
+  ,"sameAs": [{{ org_same_as | strip }}]
+  {%- endif -%}
+}
+</script>

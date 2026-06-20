@@ -1,0 +1,79 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="hero{% if section.settings.background_image != blank %} hero--has-image{% endif %}">
+
+  {%- if section.settings.background_image != blank -%}
+    <div class="hero__bg" aria-hidden="true">
+      {{
+        section.settings.background_image
+        | image_url: width: 1800
+        | image_tag:
+          class: 'hero__bg-img',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: '',
+          width: section.settings.background_image.width,
+          height: section.settings.background_image.height
+      }}
+      <div class="hero__bg-overlay"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="container hero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+
+    <h1 class="hero__heading">{{ section.settings.heading | escape }}</h1>
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="hero__subheading">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+
+    <a href="#waitlist" class="btn btn--light hero__cta">
+      {{ section.settings.cta_label | escape }}
+    </a>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Coming soon"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One great coffee. One indie roaster. Every month."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Picked curates one specialty coffee from one outstanding independent roaster and delivers it straight to your letterbox. No choice paralysis. No compromise. Just discovery."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Join the waitlist"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Recommended: 1800×1200 px or wider. Leave blank for solid espresso background."
+    }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

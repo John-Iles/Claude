@@ -1,0 +1,58 @@
+.referral-tease {
+  background-color: var(--color-bg-subtle);
+}
+
+.referral-tease__inner {
+  max-width: var(--max-w-narrow);
+  margin-inline: auto;
+}
+
+.referral-tease__icon {
+  font-size: var(--text-4xl);
+  color: var(--color-sage);
+  margin-bottom: var(--sp-4);
+  line-height: 1;
+}
+
+.referral-tease__heading {
+  margin-bottom: var(--sp-4);
+}
+
+.referral-tease__body {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--sp-10);
+}
+
+.referral-tease__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  text-align: left;
+  max-width: 440px;
+  margin-inline: auto;
+}
+
+.referral-tease__step {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-snug);
+}
+
+.referral-tease__step-num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}

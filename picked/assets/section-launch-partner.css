@@ -1,0 +1,66 @@
+.launch-partner {
+  background-color: var(--color-bg-base);
+}
+
+.launch-partner__revealed,
+.launch-partner__placeholder {
+  max-width: var(--max-w-narrow);
+  margin-inline: auto;
+}
+
+/* Confirmed roaster */
+.launch-partner__logo {
+  margin-bottom: var(--sp-6);
+}
+
+.launch-partner__logo img {
+  max-height: 80px;
+  width: auto;
+  margin-inline: auto;
+}
+
+.launch-partner__name {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--sp-3);
+}
+
+.launch-partner__blurb {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--sp-3);
+}
+
+.launch-partner__location {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-sage);
+}
+
+/* Placeholder */
+.launch-partner__placeholder-icon {
+  font-size: var(--text-4xl);
+  color: var(--color-espresso);
+  opacity: 0.15;
+  margin-bottom: var(--sp-5);
+  line-height: 1;
+}
+
+.launch-partner__placeholder-heading {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl));
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--sp-4);
+}
+
+.launch-partner__placeholder-text {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}

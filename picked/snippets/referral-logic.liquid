@@ -1,0 +1,13 @@
+{%- comment -%}
+  Inline script: reads ?ref= URL param immediately and persists to sessionStorage.
+  Runs synchronously in <head> so the param is captured even before deferred scripts load.
+  The companion referral.js asset then populates the waitlist form hidden field.
+{%- endcomment -%}
+<script>
+  (function () {
+    try {
+      var ref = new URLSearchParams(location.search).get('ref');
+      if (ref) sessionStorage.setItem('picked_ref', ref);
+    } catch (e) {}
+  })();
+</script>
